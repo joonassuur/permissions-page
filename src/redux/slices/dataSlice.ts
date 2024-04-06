@@ -73,7 +73,7 @@ export const dataSlice = createSlice({
     },
     editRole: (state, action) => {
       const { role } = action.payload;
-      const newRoles = roles.map((r: Role) => {
+      const newRoles = state.roles.map((r: Role) => {
         if (r.key === role.key) {
           return role;
         }
