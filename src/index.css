@@ -1,0 +1,53 @@
+:root {
+  font-family: 'PP Neue Montreal', sans-serif;
+  font-weight: 400;
+  color-scheme: dark;
+  letter-spacing: 0.063rem;
+}
+
+body {
+  /* margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh; */
+}
+svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+li:hover svg:not(.bin-icon) {
+  fill: #6774f4;
+}
+li:hover svg.bin-icon path {
+  stroke: #6774f4;
+}
+
+h6 {
+  letter-spacing: 0.125rem;
+}
+
+th {
+  font-weight: 400;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+  outline: none;
+}
+
+.select::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 5px 4px 0 4px;
+  border-color: #fff transparent transparent transparent;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
