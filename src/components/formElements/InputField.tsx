@@ -1,3 +1,5 @@
+import { useRef, useEffect } from 'react';
+
 interface Props {
   label: string;
   value: string;
@@ -5,6 +7,7 @@ interface Props {
   type?: string;
   onChange: (value: string) => void;
   required?: boolean;
+  isFocused?: boolean;
 }
 function InputField({
   label,
@@ -13,7 +16,16 @@ function InputField({
   placeholder,
   type,
   onChange,
+  isFocused,
 }: Props) {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (isFocused && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [isFocused]);
+
   return (
     <div className="mb-3">
       <label
@@ -23,6 +35,7 @@ function InputField({
         {label}
       </label>
       <input
+        ref={inputRef}
         required={required}
         type={type || 'text'}
         value={value || ''}

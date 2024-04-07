@@ -36,11 +36,13 @@ function PermissionsTable({ setEditRoleModalOpen }: Props) {
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    setX(e.clientX);
-    setY(e.clientY);
+    const scrollX = document.documentElement.scrollLeft;
+    const scrollY = document.documentElement.scrollTop;
+    setX(e.clientX + scrollX);
+    setY(e.clientY + scrollY);
   };
 
-  const permissionsRows = useMemo(() => {
+  const permissionFields = useMemo(() => {
     return permissions.map((field) => (
       <React.Fragment key={field.key}>
         <tr className="border-t border-border">
@@ -74,7 +76,11 @@ function PermissionsTable({ setEditRoleModalOpen }: Props) {
                       setShowTooltip(true);
                     }
                   }}
-                  onMouseLeave={() => showTooltip && setShowTooltip(false)}
+                  onMouseLeave={() => {
+                    if (showTooltip) {
+                      setShowTooltip(false);
+                    }
+                  }}
                   onMouseMove={handleMouseMove}
                 >
                   <Toggle
@@ -154,7 +160,7 @@ function PermissionsTable({ setEditRoleModalOpen }: Props) {
               ))}
             </tr>
           </thead>
-          <tbody>{permissionsRows}</tbody>
+          <tbody>{permissionFields}</tbody>
         </table>
       </div>
     </>

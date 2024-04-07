@@ -37,6 +37,7 @@ function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
       <form onSubmit={handleSubmit}>
         <div className="mt-6">
           <InputField
+            isFocused
             label="Role name"
             value={newRole?.name || ''}
             required
