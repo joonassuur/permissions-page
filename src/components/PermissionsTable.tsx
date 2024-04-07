@@ -16,6 +16,8 @@ interface Props {
 
 function PermissionsTable({ setEditRoleModalOpen }: Props) {
   const dispatch = useAppDispatch();
+  const [x, setX] = useState(0);
+  const [y, setY] = useState(0);
   const [showTooltip, setShowTooltip] = useState(false);
   const [isDropdownOpen, setDropdownOpen] = useState(false);
   const selectedRole = useAppSelector((state) => state.ui.selectedRole);
@@ -32,9 +34,6 @@ function PermissionsTable({ setEditRoleModalOpen }: Props) {
     setDropdownOpen(false);
     dispatch(setSelectedRole(null));
   };
-
-  const [x, setX] = useState(0);
-  const [y, setY] = useState(0);
 
   const handleMouseMove = (e: React.MouseEvent) => {
     setX(e.clientX);

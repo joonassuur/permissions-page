@@ -47,7 +47,7 @@ function DropdownMenuContainer({ onOpen, onClose, open, children }: Props) {
         type="button"
       >
         <svg
-          className="w-5 h-5"
+          className="h-3.5 w-2"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"
@@ -59,7 +59,7 @@ function DropdownMenuContainer({ onOpen, onClose, open, children }: Props) {
       {open && !isClosing && (
         <div
           ref={dropdownRef}
-          className="z-10 absolute bg-black-2 divide-y divide-gray-100 rounded-lg shadow w-44 top-10 right-1 text-left border border-border"
+          className="dropdownMenu z-10 absolute bg-black-2 divide-y divide-gray-100 rounded-lg shadow w-44 top-10 right-1 text-left border border-border"
         >
           {children}
         </div>
