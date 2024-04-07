@@ -2,7 +2,6 @@ interface MenuItem {
   text: string;
   icon: any;
   key: string;
-  route: string;
 }
 
 enum PermissionType {
@@ -37,5 +36,16 @@ interface PermissionsCategory {
   permissions: Permissions[];
 }
 
+interface AddRolePayload {
+  roleName: string;
+  roleInherit: string;
+}
+
 export { PermissionType };
-export type { MenuItem, Role, PermissionsCategory, Permissions };
+export type {
+  MenuItem,
+  Role,
+  PermissionsCategory,
+  Permissions,
+  AddRolePayload,
+};

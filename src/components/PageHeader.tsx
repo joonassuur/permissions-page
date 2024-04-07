@@ -1,5 +1,5 @@
-import IconButton from './IconButton';
-import MainHeader2 from './MainHeader2';
+import IconButton from './buttons/IconButton';
+import MainHeader2 from './headers/MainHeader2';
 import { PlusIcon } from '../assets/icons/PlusIcon';
 
 interface Props {

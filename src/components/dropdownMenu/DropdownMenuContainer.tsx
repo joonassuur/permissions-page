@@ -1,18 +1,15 @@
-import { useEffect, useRef, useCallback } from 'react';
-import { PencilIcon } from '../assets/icons/PencilIcon';
-import { BinIcon } from '../assets/icons/BinIcon';
-import ListElement from './ListElement';
+import { useEffect, useRef, useCallback, useState } from 'react';
 
 interface Props {
   onOpen: () => void;
   onClose: () => void;
   open: boolean;
-  onEditClick: () => void;
-  onRemove: () => void;
+  children: React.ReactNode;
 }
 
-function DropdownMenu({ onOpen, onClose, open, onEditClick, onRemove }: Props) {
+function DropdownMenuContainer({ onOpen, onClose, open, children }: Props) {
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const [isClosing, setIsClosing] = useState(false);
 
   const handleClickOutside = useCallback(
     (event: MouseEvent) => {
@@ -20,23 +17,32 @@ function DropdownMenu({ onOpen, onClose, open, onEditClick, onRemove }: Props) {
         dropdownRef.current &&
         !dropdownRef.current.contains(event.target as Node)
       ) {
-        onClose();
+        setIsClosing(true);
+        setTimeout(() => {
+          onClose();
+          setIsClosing(false);
+        }, 200);
       }
     },
     [onClose]
   );
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleClickOutside);
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    } else {
+      document.removeEventListener('mousedown', handleClickOutside);
+    }
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [handleClickOutside]);
+  }, [handleClickOutside, open]);
 
   return (
     <div className="inline-flex relative">
       <button
-        onClick={() => onOpen()}
+        id="dropdownMenuIconButton"
+        onClick={() => (open ? onClose() : onOpen())}
         className="inline-flex items-center ml-3 text-sm font-medium text-center text-black-8 rounded-lg focus:outline-none"
         type="button"
       >
@@ -50,26 +56,16 @@ function DropdownMenu({ onOpen, onClose, open, onEditClick, onRemove }: Props) {
           <path d="M3.5 1.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 6.041a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Zm0 5.959a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z" />
         </svg>
       </button>
-      {open && (
+      {open && !isClosing && (
         <div
           ref={dropdownRef}
           className="z-10 absolute bg-black-2 divide-y divide-gray-100 rounded-lg shadow w-44 top-10 right-1 text-left border border-border"
         >
-          <ul
-            className="text-sm text-gray-700"
-            aria-labelledby="dropdownMenuIconButton"
-          >
-            <ListElement
-              title="Edit details"
-              icon={<PencilIcon />}
-              onClick={onEditClick}
-            />
-            <ListElement title="Remove" icon={<BinIcon />} onClick={onRemove} />
-          </ul>
+          {children}
         </div>
       )}
     </div>
   );
 }
 
-export default DropdownMenu;
+export default DropdownMenuContainer;

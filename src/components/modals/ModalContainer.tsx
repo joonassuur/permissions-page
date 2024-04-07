@@ -1,4 +1,4 @@
-import MainHeader1 from '../MainHeader1';
+import MainHeader1 from '../headers/MainHeader1';
 
 interface Props {
   open: boolean;
@@ -23,10 +23,10 @@ function ModalContainer({ open, setOpen, children, title }: Props) {
             <button
               onClick={() => setOpen(false)}
               type="button"
-              className="bg-transparent hover:bg-gray-200 hover:text-gray-900 text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              className="bg-transparent text-secondary text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
             >
               <svg
-                className="w-3 h-3"
+                className="w-4 h-4"
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

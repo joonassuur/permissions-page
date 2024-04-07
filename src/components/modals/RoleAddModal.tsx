@@ -1,26 +1,21 @@
 import { useState } from 'react';
-import InputField from '../InputField';
-import SelectField from '../SelectField';
-import { Role } from '../../types/types';
+import InputField from '../formElements/InputField';
+import SelectField from '../formElements/SelectField';
+import { Role, AddRolePayload } from '../../types/types';
 import ModalContainer from './ModalContainer';
-import Button from '../Button';
+import { useAppSelector } from '../../redux/reduxHooks';
+import Button from '../buttons/Button';
 
 interface Props {
   open: boolean;
   setOpen: (open: boolean) => void;
-  onSubmit: ({
-    roleName,
-    roleInherit,
-  }: {
-    roleName: string;
-    roleInherit: string;
-  }) => void;
-  roles: Role[];
+  onSubmit: ({ roleName, roleInherit }: AddRolePayload) => void;
 }
 
-function RoleAddModal({ open, setOpen, onSubmit, roles }: Props) {
+function RoleAddModal({ open, setOpen, onSubmit }: Props) {
   const [roleName, setRoleName] = useState('');
   const [roleInherit, setRoleInherit] = useState('');
+  const roles: Role[] = useAppSelector((state) => state.data.roles);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -53,7 +48,7 @@ function RoleAddModal({ open, setOpen, onSubmit, roles }: Props) {
             onChange={(value) => setRoleInherit(value)}
           />
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-10">
           <Button
             variant="secondary"
             title="Cancel"

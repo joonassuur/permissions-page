@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
-import InputField from '../InputField';
+import InputField from '../formElements/InputField';
 import { Role } from '../../types/types';
 import ModalContainer from './ModalContainer';
-import Button from '../Button';
+import Button from '../buttons/Button';
 
 interface Props {
   open: boolean;
@@ -43,7 +43,7 @@ function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
             onChange={handleRoleNameChange}
           />
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between mt-10">
           <Button
             variant="secondary"
             title="Cancel"
