@@ -1,3 +1,4 @@
+// default data
 import { Role, PermissionsCategory, PermissionType } from './types';
 
 const roles: Role[] = [
@@ -19,6 +20,146 @@ const roles: Role[] = [
   },
 ];
 
+const approvedRoles: Record<PermissionType, Role[]> = Object.keys(
+  PermissionType
+).reduce((acc, permissionTypeKey) => {
+  const permissionType = PermissionType[permissionTypeKey as PermissionType];
+
+  switch (permissionType) {
+    case PermissionType.ADD_CLIENT:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+        {
+          key: 'manager',
+          name: 'Manager',
+        },
+        {
+          key: 'limitedManager',
+          name: 'Limited manager',
+        },
+        {
+          key: 'member',
+          name: 'Member',
+        },
+      ];
+      break;
+    case PermissionType.DELETE_CLIENT:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+      ];
+      break;
+    case PermissionType.ADD_INVOLVEMENT:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+      ];
+      break;
+    case PermissionType.ACCESS_ROLE:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+        {
+          key: 'manager',
+          name: 'Manager',
+        },
+      ];
+      break;
+    case PermissionType.EDIT_BILLING_DETAILS:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+      ];
+      break;
+    case PermissionType.ONGOING_MONITORING:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+        {
+          key: 'manager',
+          name: 'Manager',
+        },
+        {
+          key: 'limitedManager',
+          name: 'Limited manager',
+        },
+      ];
+      break;
+    case PermissionType.ADD_HIT:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+        {
+          key: 'manager',
+          name: 'Manager',
+        },
+        {
+          key: 'limitedManager',
+          name: 'Limited manager',
+        },
+      ];
+      break;
+    case PermissionType.REMOVE_HIT:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+        {
+          key: 'manager',
+          name: 'Manager',
+        },
+        {
+          key: 'limitedManager',
+          name: 'Limited manager',
+        },
+      ];
+      break;
+    case PermissionType.ADD_FIELD:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+      ];
+      break;
+    case PermissionType.CUSTOMER_RISK_ASSESSMENT:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+      ];
+      break;
+    case PermissionType.JURISDICTIONAL_RISK_ASSESSMENT:
+      acc[permissionType] = [
+        {
+          key: 'admin',
+          name: 'Admin',
+        },
+      ];
+      break;
+    default:
+      break;
+  }
+  return acc;
+}, {} as Record<PermissionType, Role[]>);
+
 const permissionsFields: PermissionsCategory[] = [
   {
     key: 'general',
@@ -28,42 +169,19 @@ const permissionsFields: PermissionsCategory[] = [
         key: PermissionType.ADD_CLIENT,
         name: 'Add client',
         description: 'The ability to add and edit clients.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-          {
-            key: 'manager',
-            name: 'Manager',
-          },
-          {
-            key: 'limitedManager',
-            name: 'Limited manager',
-          },
-        ],
+        approvedRoles: approvedRoles.ADD_CLIENT,
       },
       {
         key: PermissionType.DELETE_CLIENT,
         name: 'Delete client',
         description: 'The ability to delete clients.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.DELETE_CLIENT,
       },
       {
         key: PermissionType.ADD_INVOLVEMENT,
         name: 'Add involvement',
         description: 'The ability to add, edit and delete involvements.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.ADD_INVOLVEMENT,
       },
     ],
   },
@@ -76,12 +194,7 @@ const permissionsFields: PermissionsCategory[] = [
         name: 'Set permissions and access role',
         description:
           'The ability to update permissions and change access roles.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.ACCESS_ROLE,
       },
     ],
   },
@@ -93,12 +206,7 @@ const permissionsFields: PermissionsCategory[] = [
         key: PermissionType.EDIT_BILLING_DETAILS,
         name: 'Edit billing details',
         description: 'View and edit company billing details.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.EDIT_BILLING_DETAILS,
       },
     ],
   },
@@ -110,34 +218,19 @@ const permissionsFields: PermissionsCategory[] = [
         key: PermissionType.ONGOING_MONITORING,
         name: 'Ongoing monitoring',
         description: 'The ability to turn ongoing monitoring on or off.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.ONGOING_MONITORING,
       },
       {
         key: PermissionType.ADD_HIT,
         name: 'Add hit',
         description: 'The ability to add and edit hits.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.ADD_HIT,
       },
       {
         key: PermissionType.REMOVE_HIT,
         name: 'Remove hit',
         description: 'The ability to delete hits.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.REMOVE_HIT,
       },
     ],
   },
@@ -150,35 +243,20 @@ const permissionsFields: PermissionsCategory[] = [
         name: 'Add field',
         description:
           'Add and edit fields in the questionnaire and risk assessment builder.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.ADD_FIELD,
       },
       {
         key: PermissionType.CUSTOMER_RISK_ASSESSMENT,
         name: 'Customer risk assessment ',
         description: 'The ability to access the risk assessment settings.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.CUSTOMER_RISK_ASSESSMENT,
       },
       {
         key: PermissionType.JURISDICTIONAL_RISK_ASSESSMENT,
         name: 'Jurisdictional risk assessment',
         description:
           'The ability to view and edit the jurisdictional risk assessment.',
-        approvedRoles: [
-          {
-            key: 'admin',
-            name: 'Admin',
-          },
-        ],
+        approvedRoles: approvedRoles.JURISDICTIONAL_RISK_ASSESSMENT,
       },
     ],
   },
