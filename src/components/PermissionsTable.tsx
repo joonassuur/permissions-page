@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import Toggle from './formElements/Toggle';
 import { useAppDispatch } from '../redux/reduxHooks';
 import { removeRole, changePermission } from '../redux/slices/dataSlice';
@@ -39,6 +39,66 @@ function PermissionsTable({ setEditRoleModalOpen }: Props) {
     setX(e.clientX);
     setY(e.clientY);
   };
+
+  const permissionsRows = useMemo(() => {
+    return permissions.map((field) => (
+      <React.Fragment key={field.key}>
+        <tr className="border-t border-border">
+          <td className="px-6 pt-3 text-md text-secondary border-l border-border">
+            {field.title}
+          </td>
+          {roles.map((role) => (
+            <th
+              key={role.key}
+              scope="col"
+              className="px-6 py-3 text-center border-l border-border"
+            />
+          ))}
+        </tr>
+        {field.permissions.map((permission) => (
+          <tr key={permission.key} className="hover:bg-black-3">
+            <td className="px-6 py-3 border-l border-border">
+              <div className="text-primary text-md">{permission.name}</div>
+              <div className="text-gray-400 text-secondary text-sm">
+                {permission.description}
+              </div>
+            </td>
+            {roles.map((role) => (
+              <td
+                key={role.key}
+                className="px-6 py-3 text-center border-l border-border"
+              >
+                <div
+                  onMouseEnter={() => {
+                    if (role.key === 'admin') {
+                      setShowTooltip(true);
+                    }
+                  }}
+                  onMouseLeave={() => showTooltip && setShowTooltip(false)}
+                  onMouseMove={handleMouseMove}
+                >
+                  <Toggle
+                    checked={permission.approvedRoles.some(
+                      (approvedRole) => approvedRole.key === role.key
+                    )}
+                    handleChange={() =>
+                      dispatch(
+                        changePermission({
+                          role,
+                          permission: permission.key,
+                        })
+                      )
+                    }
+                    disabled={role.key === 'admin'}
+                  />
+                </div>
+              </td>
+            ))}
+          </tr>
+        ))}
+      </React.Fragment>
+    ));
+  }, [dispatch, permissions, roles, showTooltip]);
 
   return (
     <>
@@ -94,71 +154,7 @@ function PermissionsTable({ setEditRoleModalOpen }: Props) {
               ))}
             </tr>
           </thead>
-          <tbody>
-            {permissions.map((field) => (
-              <React.Fragment key={field.key}>
-                <tr className="border-t border-border">
-                  <td className="px-6 pt-3 text-md text-secondary border-l border-border">
-                    {field.title}
-                  </td>
-                  {roles.map((role) => (
-                    <th
-                      key={role.key}
-                      scope="col"
-                      className="px-6 py-3 text-center border-l border-border"
-                    />
-                  ))}
-                </tr>
-                {field.permissions.map((permission) => (
-                  <tr key={permission.key} className="hover:bg-black-3">
-                    <td className="px-6 py-3 border-l border-border">
-                      <div className="text-primary text-md">
-                        {permission.name}
-                      </div>
-                      <div className="text-gray-400 text-secondary text-sm">
-                        {permission.description}
-                      </div>
-                    </td>
-                    {roles.map((role) => (
-                      <td
-                        key={role.key}
-                        className="px-6 py-3 text-center border-l border-border"
-                      >
-                        <div
-                          onMouseEnter={() => {
-                            if (role.key === 'admin') {
-                              setShowTooltip(true);
-                            }
-                          }}
-                          onMouseLeave={() => {
-                            if (showTooltip) {
-                              setShowTooltip(false);
-                            }
-                          }}
-                          onMouseMove={handleMouseMove}
-                        >
-                          <Toggle
-                            checked={permission.approvedRoles.some(
-                              (approvedRole) => approvedRole.key === role.key
-                            )}
-                            handleChange={() =>
-                              dispatch(
-                                changePermission({
-                                  role,
-                                  permission: permission.key,
-                                })
-                              )
-                            }
-                            disabled={role.key === 'admin'}
-                          />
-                        </div>
-                      </td>
-                    ))}
-                  </tr>
-                ))}
-              </React.Fragment>
-            ))}
-          </tbody>
+          <tbody>{permissionsRows}</tbody>
         </table>
       </div>
     </>

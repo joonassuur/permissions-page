@@ -56,7 +56,7 @@ function NavMenu() {
   const dispatch = useAppDispatch();
 
   return (
-    <>
+    <div id="sidebar">
       {/* sidebar toggle button */}
       {!showSidebar && (
         <div className="fixed my-auto inset-y-0 align-middle content-center">
@@ -70,7 +70,6 @@ function NavMenu() {
       )}
       {/* sidebar */}
       <aside
-        id="sidebar"
         className={`transition-all ${
           !showSidebar ? '-translate-x-full' : 'translate-x-0'
         } fixed top-0 left-0 z-40 w-64 h-screen  bg-black-4 border-r border-border`}
@@ -112,7 +111,7 @@ function NavMenu() {
           </ul>
         </div>
       </aside>
-    </>
+    </div>
   );
 }
 
