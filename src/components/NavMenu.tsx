@@ -1,58 +1,15 @@
 import { useAppDispatch, useAppSelector } from '../redux/reduxHooks';
 import { setShowSidebar } from '../redux/slices/uiSlice';
-import { MenuItem } from '../types/types';
-import { LockIcon } from '../assets/icons/LockIcon';
-import { FlagIcon } from '../assets/icons/FlagIcon';
-import { MeterIcon } from '../assets/icons/MeterIcon';
-import { DocsIcon } from '../assets/icons/DocsIcon';
-import { BillingIcon } from '../assets/icons/BillingIcon';
-import { ListIcon } from '../assets/icons/ListIcon';
-import { MembersIcon } from '../assets/icons/MembersIcon';
 import ListElement from './ListElement';
 import Chevron from '../assets/icons/Chevron';
 import { PersonIcon } from '../assets/icons/PersonIcon';
+import { menuItems } from '../utils';
+import { useLocation } from 'react-router-dom';
 import { ChevronBackIcon } from '../assets/icons/ChevronBackIcon';
-
-const menuItems: MenuItem[] = [
-  {
-    text: 'Members',
-    key: 'members',
-    icon: <MembersIcon />,
-  },
-  {
-    text: 'Billing',
-    key: 'billing',
-    icon: <BillingIcon />,
-  },
-  {
-    text: 'Questionnaires',
-    key: 'questionnaires',
-    icon: <ListIcon />,
-  },
-  {
-    text: 'Docs',
-    key: 'docs',
-    icon: <DocsIcon />,
-  },
-  {
-    text: 'Jurisdictional risk',
-    key: 'jurisdictionalRisk',
-    icon: <FlagIcon />,
-  },
-  {
-    text: 'Risk assessments',
-    key: 'riskAssessments',
-    icon: <MeterIcon />,
-  },
-  {
-    text: 'Permissions',
-    key: 'permissions',
-    icon: <LockIcon />,
-  },
-];
 
 function NavMenu() {
   const showSidebar = useAppSelector((state) => state.ui.showSidebar);
+  const location = useLocation();
   const dispatch = useAppDispatch();
 
   return (
@@ -90,11 +47,11 @@ function NavMenu() {
           <ul className="space-y-2">
             {menuItems.map(({ text, icon, key }) => (
               <ListElement
+                active={location.pathname === `/${key}`}
                 key={key}
                 route={key}
                 title={!showSidebar ? '' : text}
                 icon={icon}
-                onClick={() => {}}
               />
             ))}
           </ul>
@@ -103,9 +60,9 @@ function NavMenu() {
           </h6>
           <ul className="space-y-2">
             <ListElement
+              active={location.pathname === `/profile`}
               title="My profile"
               icon={<PersonIcon />}
-              onClick={() => {}}
               route="profile"
             />
           </ul>

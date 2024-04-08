@@ -2,6 +2,7 @@ interface MenuItem {
   text: string;
   icon: any;
   key: string;
+  element: React.ReactNode;
 }
 
 enum PermissionType {

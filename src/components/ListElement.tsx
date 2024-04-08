@@ -2,11 +2,12 @@ import { Link } from 'react-router-dom';
 
 interface Props {
   title: string;
-  onClick: () => void;
+  onClick?: () => void;
   icon: React.ReactNode;
   textColor?: string;
   borderBottom?: boolean;
   route?: string;
+  active?: boolean;
 }
 interface ListElementContentProps {
   icon: React.ReactNode;
@@ -36,10 +37,13 @@ function ListElement({
   icon,
   borderBottom,
   route,
+  active,
 }: Props) {
   return (
     <li
-      className={`hover:bg-black-3 font-normal rounded-md ${
+      className={`hover:bg-black-3 ${
+        active ? 'bg-black-3' : 'bg-transparent'
+      } font-normal rounded-md ${
         textColor || 'text-secondary'
       } hover:text-primary ${borderBottom ? 'border-b border-border' : ''}`}
       onClick={onClick}

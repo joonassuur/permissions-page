@@ -1,8 +1,8 @@
 import NavMenu from './components/NavMenu';
-import Permissions from './views/Permissions';
 import { ErrorBoundary } from 'react-error-boundary';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom';
 import { useAppSelector } from './redux/reduxHooks';
+import { menuItems } from './utils';
 import './App.css';
 
 function App() {
@@ -15,9 +15,11 @@ function App() {
         {/* content */}
         <div className={`px-10 ${showSidebar ? 'sm:ml-64' : 'ml-0'} py-5`}>
           <Routes>
-            <Route path="/" element={<Permissions />} />
-            <Route path="/permissions" element={<Permissions />} />
-            <Route path="*" element={<div />} />
+            {menuItems.map(({ key, element }) => (
+              <Route key={key} path={key} element={element} />
+            ))}
+            <Route path="/profile" element={<div />} />
+            <Route path="*" element={<Navigate to="/permissions" replace />} />
           </Routes>
         </div>
       </ErrorBoundary>
