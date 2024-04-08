@@ -49,7 +49,7 @@ function PermissionsTable({
     return permissions.map((field) => (
       <React.Fragment key={field.key}>
         <tr className="border-t border-border">
-          <td className="px-5 font-medium pt-3 text-lg text-secondary border-l border-border">
+          <td className="px-5 font-medium pt-6 pb-3 text-lg text-secondary border-l border-border">
             {field.title}
           </td>
           {roles.map((role) => (
@@ -134,7 +134,7 @@ function PermissionsTable({
                     <span
                       className="truncate cursor-default"
                       title={role.name}
-                      style={{ maxWidth: '80px' }}
+                      style={{ maxWidth: '110px' }}
                     >
                       {role.name}
                     </span>

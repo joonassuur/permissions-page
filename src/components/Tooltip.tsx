@@ -10,7 +10,7 @@ function Tooltip({ text, x, y }: Props) {
       className="absolute z-10 max-w-40"
       style={{
         left: `${x}px`,
-        top: `${y - 40}px`,
+        top: `${y - 50}px`,
         transform: 'translateX(-50%)',
       }}
     >
