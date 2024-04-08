@@ -32,7 +32,9 @@ function InputField({
         {label}
       </label>
       <input
+        aria-label={label}
         ref={inputRef}
+        aria-required={required}
         required={required}
         type={type || 'text'}
         value={value || ''}

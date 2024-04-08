@@ -8,6 +8,7 @@ function Button({ title, onClick, variant, type }: Props) {
   return (
     <button
       type={type || 'button'}
+      aria-label={title}
       className={`${
         variant === 'primary' ? 'text-primary' : 'text-secondary'
       } focus:ring-2 focus:ring-purple-4 font-lg rounded-lg py-3 ${

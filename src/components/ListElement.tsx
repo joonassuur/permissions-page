@@ -41,6 +41,7 @@ function ListElement({
 }: Props) {
   return (
     <li
+      role="listitem"
       className={`hover:bg-black-3 ${
         active ? 'bg-black-3' : 'bg-transparent'
       } font-normal rounded-md ${
@@ -49,7 +50,11 @@ function ListElement({
       onClick={onClick}
     >
       {route ? (
-        <Link to={route} className="flex items-center p-4">
+        <Link
+          to={route}
+          className="flex items-center p-4"
+          aria-label={`Navigate to ${title}`}
+        >
           <ListElementContent icon={icon} title={title} />
         </Link>
       ) : (

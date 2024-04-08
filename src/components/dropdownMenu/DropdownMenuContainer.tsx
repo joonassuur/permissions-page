@@ -41,6 +41,7 @@ function DropdownMenuContainer({ onOpen, onClose, open, children }: Props) {
   return (
     <div className="inline-flex relative">
       <button
+        aria-label="Open dropdown menu"
         id="dropdownMenuIconButton"
         onClick={() => (open ? onClose() : onOpen())}
         className="inline-flex items-center ml-3 font-medium text-center hover:text-purple-4 text-black-8 rounded-lg focus:outline-none"
@@ -59,6 +60,7 @@ function DropdownMenuContainer({ onOpen, onClose, open, children }: Props) {
       {open && !isClosing && (
         <div
           ref={dropdownRef}
+          role="menu"
           className="dropdownMenu z-10 absolute bg-black-2 divide-y divide-gray-100 rounded-lg shadow w-44 top-10 right-1 text-left border border-border"
         >
           {children}
