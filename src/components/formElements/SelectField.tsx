@@ -12,26 +12,18 @@ function SelectField({ label, options, value, onChange }: Props) {
       </label>
       <div className="select relative">
         <select
+          aria-label={label}
           id={label}
           className="appearance-none bg-black-7 text-primary text-lg rounded-md focus:ring-2 focus:ring-purple-4 block w-full p-3"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         >
-          <option value="">Select existing role</option>
+          <option value="">None</option>
           {options.map((option) => (
-            <option
-              key={option.key}
-              value={option.key}
-              // selected={option.key === value}
-            >
+            <option key={option.key} value={option.key}>
               {option.value}
             </option>
           ))}
-          {/* <option selected>Choose a country</option>
-        <option value="US">United States</option>
-        <option value="CA">Canada</option>
-        <option value="FR">France</option>
-        <option value="DE">Germany</option> */}
         </select>
       </div>
     </div>
