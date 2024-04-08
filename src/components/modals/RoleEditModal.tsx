@@ -48,7 +48,7 @@ function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
   return (
     <ModalContainer open={open} setOpen={setOpen} title="Edit">
       <form>
-        <div className="mt-6">
+        <div>
           <InputField
             isFocused
             label="Role name"

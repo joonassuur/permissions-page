@@ -7,16 +7,13 @@ interface Props {
 function SelectField({ label, options, value, onChange }: Props) {
   return (
     <div className="mb-3">
-      <label
-        htmlFor={label}
-        className="block mb-2 text-sm font-medium text-secondary"
-      >
+      <label htmlFor={label} className="block mb-2 text-lg text-secondary">
         {label}
       </label>
       <div className="select relative">
         <select
           id={label}
-          className="appearance-none bg-black-7 text-primary text-sm rounded-md focus:ring-2 focus:ring-purple-4 block w-full p-3"
+          className="appearance-none bg-black-7 text-primary text-lg rounded-md focus:ring-2 focus:ring-purple-4 block w-full p-3"
           value={value}
           onChange={(e) => onChange(e.target.value)}
         >

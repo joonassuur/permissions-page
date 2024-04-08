@@ -75,7 +75,7 @@ function NavMenu() {
         } fixed top-0 left-0 z-40 w-64 h-screen  bg-black-4 border-r border-border`}
         aria-label="Sidebar"
       >
-        <div className="h-full px-4 py-8 overflow-y-auto bg-gray-800">
+        <div className="h-full px-5 py-8 overflow-y-auto bg-gray-800">
           <div className="flex items-center mb-8">
             <button onClick={() => dispatch(setShowSidebar(!showSidebar))}>
               <div className="p-1 rounded-md mr-3 bg-black-2 text-secondary hover:text-purple-4 hover:bg-black-3">
@@ -106,7 +106,7 @@ function NavMenu() {
               title="My profile"
               icon={<PersonIcon />}
               onClick={() => {}}
-              route="aaa"
+              route="profile"
             />
           </ul>
         </div>

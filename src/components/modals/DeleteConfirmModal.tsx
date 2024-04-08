@@ -16,7 +16,7 @@ function DeleteConfirmModal({ open, setOpen, onSubmit, deleteTitle }: Props) {
       title={`Remove ${deleteTitle}?`}
     >
       <form>
-        <div className="flex justify-between mt-10">
+        <div className="flex justify-between">
           <Button
             variant="secondary"
             title="Cancel"

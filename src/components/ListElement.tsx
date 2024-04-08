@@ -11,13 +11,20 @@ interface Props {
 interface ListElementContentProps {
   icon: React.ReactNode;
   title: string;
+  largeFont?: boolean;
 }
 
-const ListElementContent = ({ icon, title }: ListElementContentProps) => {
+const ListElementContent = ({
+  icon,
+  title,
+  largeFont,
+}: ListElementContentProps) => {
   return (
     <>
       {icon}
-      <span className="ms-3">{title}</span>
+      <span className={`ms-3 ${largeFont ? 'text-lg' : 'text-base'}`}>
+        {title}
+      </span>
     </>
   );
 };
@@ -32,18 +39,18 @@ function ListElement({
 }: Props) {
   return (
     <li
-      className={`hover:bg-black-3 rounded-md ${
+      className={`hover:bg-black-3 font-normal rounded-md ${
         textColor || 'text-secondary'
       } hover:text-primary ${borderBottom ? 'border-b border-border' : ''}`}
       onClick={onClick}
     >
       {route ? (
-        <Link to={route} className="flex items-center p-4 text-md">
+        <Link to={route} className="flex items-center p-4">
           <ListElementContent icon={icon} title={title} />
         </Link>
       ) : (
-        <span className="flex items-center p-4 text-md cursor-pointer">
-          <ListElementContent icon={icon} title={title} />
+        <span className="flex items-center p-4 cursor-pointer">
+          <ListElementContent largeFont icon={icon} title={title} />
         </span>
       )}
     </li>

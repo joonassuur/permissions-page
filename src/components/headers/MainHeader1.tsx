@@ -3,7 +3,7 @@ interface Props {
 }
 function MainHeader1({ title }: Props) {
   return (
-    <h1 className="self-center text-2xl whitespace-nowrap text-primary">
+    <h1 className="self-center text-1xl whitespace-nowrap text-primary">
       {title}
     </h1>
   );

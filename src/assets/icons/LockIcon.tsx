@@ -1,8 +1,8 @@
 export const LockIcon = () => {
   return (
     <svg
-      width="10"
-      height="15"
+      width="12"
+      height="18"
       viewBox="0 0 10 15"
       fill="#677B92"
       xmlns="http://www.w3.org/2000/svg"

@@ -49,29 +49,29 @@ function PermissionsTable({
     return permissions.map((field) => (
       <React.Fragment key={field.key}>
         <tr className="border-t border-border">
-          <td className="px-6 pt-3 text-md text-secondary border-l border-border">
+          <td className="px-5 font-medium pt-3 text-lg text-secondary border-l border-border">
             {field.title}
           </td>
           {roles.map((role) => (
             <th
               key={role.key}
               scope="col"
-              className="px-6 py-3 text-center border-l border-border"
+              className="px-5 py-3 text-center border-l border-border"
             />
           ))}
         </tr>
         {field.permissions.map((permission) => (
           <tr key={permission.key} className="hover:bg-black-3">
-            <td className="px-6 py-3 border-l border-border">
-              <div className="text-primary text-md">{permission.name}</div>
-              <div className="text-gray-400 text-secondary text-sm">
+            <td className="px-5 py-3 border-l border-border">
+              <div className="text-primary text-lg">{permission.name}</div>
+              <div className="text-gray-400 text-secondary text-2base">
                 {permission.description}
               </div>
             </td>
             {roles.map((role) => (
               <td
                 key={role.key}
-                className="px-6 py-3 text-center border-l border-border"
+                className="px-4 py-3 text-center border-l border-border"
               >
                 <div
                   onMouseEnter={() => {
@@ -114,18 +114,18 @@ function PermissionsTable({
       {showTooltip && (
         <Tooltip text="Admin permissons are not editable" x={x} y={y} />
       )}
-      <div className="relative overflow-x-auto rounded-lg mt-8">
-        <table className="min-w-max border border-border w-full text-sm text-left rtl:text-right text-gray-500">
-          <thead className="bg-black-4 text-secondary text-md font-normal">
+      <div className="relative overflow-x-auto rounded-lg mt-10">
+        <table className="min-w-max border border-border w-full text-base text-left rtl:text-right text-gray-500">
+          <thead className="bg-black-4 text-secondary">
             <tr>
-              <th scope="col" className="px-6 py-3">
+              <th scope="col" className="px-5 py-3 font-medium text-2base">
                 Actions
               </th>
               {roles.map((role) => (
                 <th
                   key={role.key}
                   scope="col"
-                  className="align-middle px-6 py-3 text-center border-l border-border w-10"
+                  className="align-middle px-5 py-3 text-center border-l border-border w-10 font-medium text-2base"
                 >
                   <div
                     className="flex align-middle items-center justify-center"
@@ -140,7 +140,7 @@ function PermissionsTable({
                     </span>
                     {role.key === 'admin' ? (
                       <div
-                        className="ml-3"
+                        className="ml-3 cursor-not-allowed"
                         onMouseOver={() => setShowTooltip(true)}
                         onMouseLeave={() => setShowTooltip(false)}
                       >

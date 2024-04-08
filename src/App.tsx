@@ -13,7 +13,7 @@ function App() {
       <ErrorBoundary FallbackComponent={() => <div>Something went wrong</div>}>
         <NavMenu />
         {/* content */}
-        <div className={`px-12 ${showSidebar ? 'sm:ml-64' : 'ml-0'} py-8`}>
+        <div className={`px-10 ${showSidebar ? 'sm:ml-64' : 'ml-0'} py-5`}>
           <Routes>
             <Route path="/" element={<Permissions />} />
             <Route path="/permissions" element={<Permissions />} />

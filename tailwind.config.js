@@ -22,7 +22,12 @@ export default {
       border: 'rgba(217, 217, 217, 0.05)',
       'red-1': '#D51E68',
     },
-    extend: {},
+    extend: {
+      fontSize: {
+        '2base': '1.083rem',
+        '1xl': '1.75rem',
+      },
+    },
   },
   darkMode: 'selector',
   plugins: [],

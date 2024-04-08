@@ -18,10 +18,10 @@ function ModalContainer({ open, setOpen, children, title }: Props) {
       aria-labelledby="dialogTitle"
       className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-screen bg-black-1 bg-opacity-70"
     >
-      <div className="relative w-full max-w-md max-h-full">
+      <div className="relative w-full max-w-lg max-h-full">
         <div className="relative bg-black-4  shadow p-10">
           {/* Modal header */}
-          <div className="flex items-center justify-betweenborder-b">
+          <div className="flex items-center justify-between mb-10">
             <MainHeader1 title={title} />
             <button
               onClick={() => setOpen(false)}

@@ -43,7 +43,7 @@ function RoleAddModal({ open, setOpen, onSubmit }: Props) {
   return (
     <ModalContainer open={open} setOpen={setOpen} title="Create new role">
       <form>
-        <div className="mt-6">
+        <div>
           <InputField
             isFocused
             label="Role name"
