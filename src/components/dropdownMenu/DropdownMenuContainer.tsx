@@ -43,11 +43,11 @@ function DropdownMenuContainer({ onOpen, onClose, open, children }: Props) {
       <button
         id="dropdownMenuIconButton"
         onClick={() => (open ? onClose() : onOpen())}
-        className="inline-flex items-center ml-3 text-sm font-medium text-center text-black-8 rounded-lg focus:outline-none"
+        className="inline-flex items-center ml-3 font-medium text-center hover:text-purple-4 text-black-8 rounded-lg focus:outline-none"
         type="button"
       >
         <svg
-          className="h-3.5 w-2"
+          className="h-4 w-2.5"
           aria-hidden="true"
           xmlns="http://www.w3.org/2000/svg"
           fill="currentColor"

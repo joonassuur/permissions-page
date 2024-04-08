@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import Toggle from './formElements/Toggle';
 import { useAppDispatch } from '../redux/reduxHooks';
-import { removeRole, changePermission } from '../redux/slices/dataSlice';
+import { changePermission } from '../redux/slices/dataSlice';
 import { setSelectedRole } from '../redux/slices/uiSlice';
 import { LockIcon } from '../assets/icons/LockIcon';
 import { useAppSelector } from '../redux/reduxHooks';
@@ -12,9 +12,13 @@ import { Role, PermissionsCategory } from '../types/types';
 
 interface Props {
   setEditRoleModalOpen: (open: boolean) => void;
+  setDeleteRoleModalOpen: (open: boolean) => void;
 }
 
-function PermissionsTable({ setEditRoleModalOpen }: Props) {
+function PermissionsTable({
+  setEditRoleModalOpen,
+  setDeleteRoleModalOpen,
+}: Props) {
   const dispatch = useAppDispatch();
   const [x, setX] = useState(0);
   const [y, setY] = useState(0);
@@ -151,7 +155,7 @@ function PermissionsTable({ setEditRoleModalOpen }: Props) {
                       >
                         <PermissionsDropdownMenuList
                           onEditClick={() => setEditRoleModalOpen(true)}
-                          onRemove={() => dispatch(removeRole({ role }))}
+                          onRemove={() => setDeleteRoleModalOpen(true)}
                         />
                       </DropdownMenuContainer>
                     )}

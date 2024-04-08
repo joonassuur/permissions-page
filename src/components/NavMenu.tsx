@@ -78,7 +78,7 @@ function NavMenu() {
         <div className="h-full px-4 py-8 overflow-y-auto bg-gray-800">
           <div className="flex items-center mb-8">
             <button onClick={() => dispatch(setShowSidebar(!showSidebar))}>
-              <div className="p-1 rounded-md mr-3 bg-black-2">
+              <div className="p-1 rounded-md mr-3 bg-black-2 text-secondary hover:text-purple-4 hover:bg-black-3">
                 <ChevronBackIcon />
               </div>
             </button>

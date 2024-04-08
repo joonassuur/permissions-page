@@ -4,7 +4,7 @@ export const ChevronBackIcon = () => {
       width="16"
       height="16"
       viewBox="0 0 16 16"
-      stroke="#677B92"
+      stroke="currentColor"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path

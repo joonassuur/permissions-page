@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import InputField from '../formElements/InputField';
 import SelectField from '../formElements/SelectField';
 import { Role, AddRolePayload } from '../../types/types';
 import ModalContainer from './ModalContainer';
+import { customToast } from '../../utils';
 import { useAppSelector } from '../../redux/reduxHooks';
 import Button from '../buttons/Button';
 
@@ -17,16 +18,27 @@ function RoleAddModal({ open, setOpen, onSubmit }: Props) {
   const [roleInherit, setRoleInherit] = useState('');
   const roles: Role[] = useAppSelector((state) => state.data.roles);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
+    if (
+      roles.some(
+        (role: Role) => role.name.toLowerCase() === roleName.toLowerCase()
+      )
+    ) {
+      customToast('Role already exists');
+      return;
+    }
 
     if (!roleName) return;
     onSubmit({
       roleName,
       roleInherit,
     });
-    setOpen(false);
   };
+
+  useEffect(() => {
+    setRoleName('');
+    setRoleInherit('');
+  }, [open]);
 
   return (
     <ModalContainer open={open} setOpen={setOpen} title="Create new role">
@@ -55,7 +67,12 @@ function RoleAddModal({ open, setOpen, onSubmit }: Props) {
             title="Cancel"
             onClick={() => setOpen(false)}
           />
-          <Button type="submit" variant="primary" title="Create role" />
+          <Button
+            type="button"
+            onClick={handleSubmit}
+            variant="primary"
+            title="Create role"
+          />
         </div>
       </form>
     </ModalContainer>

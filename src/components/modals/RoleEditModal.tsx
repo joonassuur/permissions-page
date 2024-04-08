@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import InputField from '../formElements/InputField';
 import { Role } from '../../types/types';
 import ModalContainer from './ModalContainer';
+import { customToast } from '../../utils';
+import { useAppSelector } from '../../redux/reduxHooks';
 import Button from '../buttons/Button';
 
 interface Props {
@@ -13,6 +15,7 @@ interface Props {
 
 function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
   const [newRole, setNewRole] = useState<Role | null>(selectedRole);
+  const roles: Role[] = useAppSelector((state) => state.data.roles);
 
   useEffect(() => {
     return () => {
@@ -20,11 +23,18 @@ function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
     };
   }, [open, selectedRole]);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     if (!newRole?.name) return;
+
+    if (
+      roles.some(
+        (role: Role) => role.name.toLowerCase() === newRole?.name.toLowerCase()
+      )
+    ) {
+      customToast('Role already exists');
+      return;
+    }
     onSubmit(newRole);
-    setOpen(false);
   };
 
   const handleRoleNameChange = (value: string) => {
@@ -50,7 +60,12 @@ function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
             title="Cancel"
             onClick={() => setOpen(false)}
           />
-          <Button type="submit" variant="primary" title="Save" />
+          <Button
+            type="button"
+            onClick={handleSubmit}
+            variant="primary"
+            title="Save"
+          />
         </div>
       </form>
     </ModalContainer>

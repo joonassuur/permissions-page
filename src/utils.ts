@@ -1,4 +1,5 @@
 import { PermissionsCategory, PermissionType } from './types/types';
+import { toast } from 'react-toastify';
 
 const getPermissionsForInheritedRole = (
   permissions: PermissionsCategory[],
@@ -32,4 +33,13 @@ function toCamelCase(input: string) {
   return camelCaseString;
 }
 
-export { getPermissionsForInheritedRole, toCamelCase };
+const toastStyles = {
+  background: '#131b24',
+  color: '#677B92',
+};
+
+const customToast = (text: string) => {
+  toast(text, { style: toastStyles });
+};
+
+export { getPermissionsForInheritedRole, toCamelCase, customToast };
