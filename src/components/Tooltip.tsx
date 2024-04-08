@@ -14,7 +14,7 @@ function Tooltip({ text, x, y }: Props) {
         transform: 'translateX(-50%)',
       }}
     >
-      <div className="-mt-8 -ml-4 p-2  text-secondary text-base rounded-lg  transition-opacity duration-300 bg-black-4 border border-border">
+      <div className="-mt-8 -ml-4 p-2.5  text-secondary text-base rounded-lg  transition-opacity duration-300 bg-black-4 border border-border">
         <p className="text-white text-center text-base">{text}</p>
       </div>
     </div>
