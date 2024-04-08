@@ -62,7 +62,7 @@ function NavMenu() {
         <div className="fixed my-auto inset-y-0 align-middle content-center">
           <button
             onClick={() => dispatch(setShowSidebar(true))}
-            className="ml-2"
+            className="ml-2 hover:text-purple-4 text-secondary"
           >
             <Chevron />
           </button>

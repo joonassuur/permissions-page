@@ -5,7 +5,7 @@ function Chevron() {
       height="10"
       viewBox="0 0 6 10"
       fill="none"
-      stroke="#677B92"
+      stroke="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       className="rotate-180"
     >

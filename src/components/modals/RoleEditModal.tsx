@@ -24,7 +24,10 @@ function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
   }, [open, selectedRole]);
 
   const handleSubmit = () => {
-    if (!newRole?.name) return;
+    if (!newRole?.name) {
+      customToast('Role name is required');
+      return;
+    }
 
     if (
       roles.some(
@@ -44,7 +47,7 @@ function RoleEditModal({ open, setOpen, onSubmit, selectedRole }: Props) {
 
   return (
     <ModalContainer open={open} setOpen={setOpen} title="Edit">
-      <form onSubmit={handleSubmit}>
+      <form>
         <div className="mt-6">
           <InputField
             isFocused

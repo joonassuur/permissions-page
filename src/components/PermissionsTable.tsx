@@ -36,7 +36,6 @@ function PermissionsTable({
   };
   const handleDropdownClose = () => {
     setDropdownOpen(false);
-    dispatch(setSelectedRole(null));
   };
 
   const handleMouseMove = (e: React.MouseEvent) => {

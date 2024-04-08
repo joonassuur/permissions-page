@@ -15,14 +15,19 @@ function DeleteConfirmModal({ open, setOpen, onSubmit, deleteTitle }: Props) {
       setOpen={setOpen}
       title={`Remove ${deleteTitle}?`}
     >
-      <form onSubmit={onSubmit}>
+      <form>
         <div className="flex justify-between mt-10">
           <Button
             variant="secondary"
             title="Cancel"
             onClick={() => setOpen(false)}
           />
-          <Button type="submit" variant="primary" title="Remove" />
+          <Button
+            type="button"
+            onClick={onSubmit}
+            variant="primary"
+            title="Remove"
+          />
         </div>
       </form>
     </ModalContainer>

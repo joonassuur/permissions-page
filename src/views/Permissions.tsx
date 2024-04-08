@@ -51,12 +51,14 @@ function Permissions() {
         setOpen={(boolean) => setAddRoleModalOpen(boolean)}
         onSubmit={handleAddRole}
       />
-      <RoleEditModal
-        open={editRoleModalOpen}
-        setOpen={(boolean) => setEditRoleModalOpen(boolean)}
-        onSubmit={handleEditRole}
-        selectedRole={selectedRole}
-      />
+      {!selectedRole ? null : (
+        <RoleEditModal
+          open={editRoleModalOpen}
+          setOpen={(boolean) => setEditRoleModalOpen(boolean)}
+          onSubmit={handleEditRole}
+          selectedRole={selectedRole}
+        />
+      )}
       <PageHeader
         title="Permissions"
         onButtonClick={() => setAddRoleModalOpen(true)}

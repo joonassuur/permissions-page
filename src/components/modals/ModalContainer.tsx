@@ -18,7 +18,7 @@ function ModalContainer({ open, setOpen, children, title }: Props) {
       aria-labelledby="dialogTitle"
       className="fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full h-screen bg-black-1 bg-opacity-70"
     >
-      <div className="relative w-full max-w-lg max-h-full">
+      <div className="relative w-full max-w-md max-h-full">
         <div className="relative bg-black-4  shadow p-10">
           {/* Modal header */}
           <div className="flex items-center justify-betweenborder-b">
@@ -26,7 +26,7 @@ function ModalContainer({ open, setOpen, children, title }: Props) {
             <button
               onClick={() => setOpen(false)}
               type="button"
-              className="bg-transparent text-secondary text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+              className="bg-transparent text-secondary text-sm w-8 h-8 ms-auto inline-flex justify-center items-center hover:text-purple-4"
             >
               <svg
                 className="w-4 h-4"
